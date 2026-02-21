@@ -33,10 +33,4 @@ key and value pair
     public String registerDoctor(@RequestBody DoctorRegistrationRequest doctorRegistrationRequest) {
         return doctorService.RegisterDoctor(doctorRegistrationRequest);
     }
-
-
-
-
-
-
 }

@@ -27,6 +27,9 @@ public class Appointment {
     @Column(name = "doctor_id")
     private Long doctorId;
 
+    @Column(name = "consultation_fee")
+    private Double consultationFee;
+
     private String appointmentDateTime;
 
     private String status; // BOOKED, CANCELLED, COMPLETED

@@ -1,33 +1,34 @@
 package nimblix.in.HealthCareHub.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import nimblix.in.HealthCareHub.model.Patient;
+import nimblix.in.HealthCareHub.service.PatientService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("api/patient")
+@RequestMapping("/api/patient")
 @RequiredArgsConstructor
 public class PatientController {
-    @Autowired
-    private PatientService service;
+
+    private final PatientService service;
+
+    // ---------------- ADD PATIENT ----------------
     @PostMapping("/add")
-    public Patient addPatient(@RequestBody Patient patient)
-    {
+    public Patient addPatient(@RequestBody Patient patient) {
         return service.savePatient(patient);
     }
 
-    // Get all non-deleted patients
-    @GetMapping("/patients")
-
+    // ---------------- GET ALL PATIENTS ----------------
+    @GetMapping
     public List<Patient> getAllPatients() {
-
         return service.getAllPatients();
     }
 
-    // Soft delete by ID
-    @DeleteMapping("patients/{id}")
+    // ---------------- SOFT DELETE PATIENT ----------------
+    @DeleteMapping("/{id}")
     public String deletePatient(@PathVariable Long id) {
         return service.softDeletePatient(id);
     }
-
-
+}
